@@ -1,7 +1,6 @@
-FROM debian:jessie
+FROM debian
 
 # TODO(hkjn): Use hkjn/arch as base.
-# TODO(hkjn): Set up automatic builds in Docker Hub repo.
 
 MAINTAINER Henrik Jonsson <me@hkjn.me>
 
@@ -12,7 +11,6 @@ ENV RELEASE_KEY 0x4E2C6E8793298290
 ENV CHECKSUMS_FILE sha256sums-unsigned-build.txt
 ENV CHECKSUMS_URL https://dist.torproject.org/torbrowser/${TOR_VERSION}/${CHECKSUMS_FILE}
 ENV RELEASE_URL https://dist.torproject.org/torbrowser/${TOR_VERSION}/${RELEASE_FILE}
-
 
 RUN apt-get update && \
     apt-get install -y \
