@@ -1,0 +1,5 @@
+cbafa67fa269e8fa658c1ae3b3cd4d83bc8ce4dc8ee15c32fe5154588b69f5e7  mar-tools-linux64.zip
+f53501217dc5bd567927015974d9e51d41c0d17d04d17e9a40e2d78b5d118f28  tor-browser-linux64-6.0a4-hardened_ALL.mar
+f5224c78c3f0da2df4286a6e33a4afec3339a9d6848ff9b6480a42214b8bed8c  tor-browser-linux64-6.0a4-hardened_ALL.tar.xz
+f45addbb1b1f0a824cd6baa9bb07860e41f099771ebba2b62f9dbbffc784d6a8  tor-browser-linux64-debug.zip
+243534e2b0c5f57094cc2b3aee0c399b71c9ccedc1cd949813299490bdfc7c2f  tor-linux64-debug.zip
