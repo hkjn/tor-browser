@@ -34,10 +34,7 @@ COPY $CHECKSUMS_FILE .
 RUN gpg --keyserver pgp.mit.edu --recv-keys $RELEASE_KEY
 RUN curl --fail -O -sSL ${RELEASE_URL} && \
     curl --fail -O -sSL ${RELEASE_URL}.asc && \
-    curl --fail -O -sSL ${CHECKSUMS_URL} && \
-    curl --fail -O -sSL ${CHECKSUMS_URL}.asc && \
     gpg --verify ${RELEASE_FILE}.asc && \
-    gpg --verify ${CHECKSUMS_FILE}.asc && \
     sha256sum -c sha256sums-unsigned-build.txt && \
     tar --strip-components=1 -vxJf ${RELEASE_FILE} && \
     rm -v ${RELEASE_FILE}*
