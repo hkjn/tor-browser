@@ -1,1 +1,1 @@
-f5224c78c3f0da2df4286a6e33a4afec3339a9d6848ff9b6480a42214b8bed8c  tor-browser-linux64-6.0a4-hardened_ALL.tar.xz
+8e1f3ae7888d629b677ccf483aa5fa077914cfe6fa45a1d377f5a9489b9cc3f1  tor-browser-linux64-6.0a5-hardened_ALL.tar.xz
