@@ -37,7 +37,9 @@ RUN curl --fail -O -sSL ${RELEASE_URL} && \
     gpg --verify ${RELEASE_FILE}.asc && \
     sha256sum -c sha256sums-unsigned-build.txt && \
     tar --strip-components=1 -vxJf ${RELEASE_FILE} && \
-    rm -v ${RELEASE_FILE}*
+    rm -v ${RELEASE_FILE}* && \
+    mkdir /usr/local/bin/Browser/Downloads && \
+    chown -R user:user /usr/local/bin/Browser/Downloads
 
 WORKDIR /usr/local/bin/Browser/Downloads
 USER user
