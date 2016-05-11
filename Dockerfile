@@ -43,8 +43,7 @@ RUN curl --fail -O -sSL ${RELEASE_URL} && \
     tar --strip-components=1 -vxJf ${RELEASE_FILE} && \
     rm -v ${RELEASE_FILE}* sha256sums.txt && \
     mkdir /usr/local/bin/Browser/Downloads && \
-    chown -R user:user /usr/local/bin/Browser/Downloads && \
-    rm -v ${RELEASE_FILE}*
+    chown -R user:user /usr/local/bin/Browser/Downloads
 
 WORKDIR /usr/local/bin/Browser/Downloads
 USER user
