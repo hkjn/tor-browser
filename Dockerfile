@@ -29,8 +29,8 @@ RUN useradd --create-home --home-dir $HOME user && \
 
 WORKDIR /usr/local/bin
 
-RUN gpg --keyserver pgp.mit.edu --recv-keys $RELEASE_KEY && \
-    curl --fail -O -sSL ${RELEASE_URL} && \
+RUN gpg --keyserver pgp.mit.edu --recv-keys $RELEASE_KEY
+RUN curl --fail -O -sSL ${RELEASE_URL} && \
     curl --fail -O -sSL ${RELEASE_URL}.asc && \
     gpg --verify ${RELEASE_FILE}.asc && \
     echo "$SHA256_CHECKSUM $RELEASE_FILE" > sha256sums.txt && \
