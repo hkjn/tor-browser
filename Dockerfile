@@ -38,7 +38,10 @@ RUN gpg --keyserver pgp.mit.edu --recv-keys $RELEASE_KEY
 RUN curl --fail -O -sSL ${RELEASE_URL} && \
     curl --fail -O -sSL ${RELEASE_URL}.asc && \
     gpg --verify ${RELEASE_FILE}.asc && \
-    echo "$SHA256_CHECKSUM $RELEASE_FILE" > sha256sums.txt && \
+    echo "$SHA256_CHECKSUM $RELEASE_FILE" > sha256sums.txt
+RUN echo "sha256sum for tor-browser-linux64-6.0a5-hardened_ALL.tar.xz: $(sha256sum tor-browser-linux64-6.0a5-hardened_ALL.tar.xz)" && \
+    echo "Contents of sha256sums.txt: $(cat sha256sums.txt)"
+RUN \
     sha256sum -c sha256sums.txt && \
     tar --strip-components=1 -vxJf ${RELEASE_FILE} && \
     rm -v ${RELEASE_FILE}* sha256sums.txt && \
