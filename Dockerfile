@@ -5,11 +5,10 @@ FROM debian
 MAINTAINER Henrik Jonsson <me@hkjn.me>
 
 ENV TOR_VERSION 6.0a5-hardened
+ENV SHA256_CHECKSUM f5224c78c3f0da2df4286a6e33a4afec3339a9d6848ff9b6480a42214b8bed8c
 ENV LANG C.UTF-8
 ENV RELEASE_FILE tor-browser-linux64-${TOR_VERSION}_ALL.tar.xz
 ENV RELEASE_KEY 0x4E2C6E8793298290
-ENV CHECKSUMS_FILE sha256sums-unsigned-build.txt
-
 ENV RELEASE_URL https://dist.torproject.org/torbrowser/${TOR_VERSION}/${RELEASE_FILE}
 
 RUN apt-get update && \
@@ -30,16 +29,17 @@ RUN useradd --create-home --home-dir $HOME user && \
 
 WORKDIR /usr/local/bin
 
-COPY $CHECKSUMS_FILE .
-RUN gpg --keyserver pgp.mit.edu --recv-keys $RELEASE_KEY
-RUN curl --fail -O -sSL ${RELEASE_URL} && \
+RUN gpg --keyserver pgp.mit.edu --recv-keys $RELEASE_KEY && \
+    curl --fail -O -sSL ${RELEASE_URL} && \
     curl --fail -O -sSL ${RELEASE_URL}.asc && \
     gpg --verify ${RELEASE_FILE}.asc && \
-    sha256sum -c sha256sums-unsigned-build.txt && \
+    echo "$SHA256_CHECKSUM $RELEASE_FILE" > sha256sums.txt && \
+    sha256sum -c sha256sums.txt && \
     tar --strip-components=1 -vxJf ${RELEASE_FILE} && \
-    rm -v ${RELEASE_FILE}* && \
+    rm -v ${RELEASE_FILE}* sha256sums.txt && \
     mkdir /usr/local/bin/Browser/Downloads && \
     chown -R user:user /usr/local/bin/Browser/Downloads
+    rm -v ${RELEASE_FILE}*
 
 WORKDIR /usr/local/bin/Browser/Downloads
 USER user
