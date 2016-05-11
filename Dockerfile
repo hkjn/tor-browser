@@ -29,6 +29,11 @@ RUN useradd --create-home --home-dir $HOME user && \
 
 WORKDIR /usr/local/bin
 
+
+# TODO(hkjn): Stop having gpg import key command separate layer, if we
+# can figure out why it's flaky and commonly gives "keys: key
+# 4E2C6E8793298290 can't be retrieved, gpg: no valid OpenPGP data
+# found."
 RUN gpg --keyserver pgp.mit.edu --recv-keys $RELEASE_KEY
 RUN curl --fail -O -sSL ${RELEASE_URL} && \
     curl --fail -O -sSL ${RELEASE_URL}.asc && \
