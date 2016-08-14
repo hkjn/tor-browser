@@ -4,9 +4,9 @@ FROM debian
 
 MAINTAINER Henrik Jonsson <me@hkjn.me>
 
-ENV TOR_VERSION 6.5a1-hardened
+ENV TOR_VERSION 6.5a2-hardened
 # Taken from https://dist.torproject.org/torbrowser/$TOR_VERSION/sha256sums-unsigned-build.txt
-ENV SHA256_CHECKSUM 15e41f5886a7adb3621ef48b165ee32152a6bc13dc80ab9b0dda15e8bc29d817
+ENV SHA256_CHECKSUM 9b6dcc558ff386e8d4c1387f97f1830944bcc370aeb6202bead6c2cc063ed4ad
 ENV LANG C.UTF-8
 ENV RELEASE_FILE tor-browser-linux64-${TOR_VERSION}_ALL.tar.xz
 ENV RELEASE_KEY 0x4E2C6E8793298290
