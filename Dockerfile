@@ -11,7 +11,6 @@ ENV TOR_VERSION=6.5a6-hardened \
     RELEASE_FILE=tor-browser-linux64-${TOR_VERSION}_ALL.tar.xz \
     RELEASE_KEY=0x4E2C6E8793298290 \
     RELEASE_URL=https://dist.torproject.org/torbrowser/${TOR_VERSION}/${RELEASE_FILE} \
-    HOME=/home/user \
     PATH=$PATH:/usr/local/bin/Browser
 
 RUN apt-get update && \
@@ -24,13 +23,9 @@ RUN apt-get update && \
       libxrender1 \
       libxt6 \
       xz-utils && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN useradd --create-home --home-dir $HOME user && \
-    chown -R user:user $HOME
-
-WORKDIR /usr/local/bin
-
+    rm -rf /var/lib/apt/lists/* && \
+    useradd --create-home --home-dir /home/user user && \
+    chown -R user:user /home/user
 
 # TODO(hkjn): Stop having gpg import key command separate layer, if we
 # can figure out why it's flaky and commonly gives "keys: key
