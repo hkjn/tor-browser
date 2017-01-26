@@ -11,7 +11,8 @@ ENV TOR_VERSION=6.5a6-hardened \
     RELEASE_FILE=tor-browser-linux64-${TOR_VERSION}_ALL.tar.xz \
     RELEASE_KEY=0x4E2C6E8793298290 \
     RELEASE_URL=https://dist.torproject.org/torbrowser/${TOR_VERSION}/${RELEASE_FILE} \
-    HOME=/home/user
+    HOME=/home/user \
+    PATH=$PATH:/usr/local/bin/Browser
 
 RUN apt-get update && \
     apt-get install -y \
