@@ -50,6 +50,5 @@ RUN curl --fail -O -sSL ${RELEASE_URL} && \
 WORKDIR /usr/local/bin/Browser/Downloads
 USER user
 
-COPY [ "start.sh", "/usr/local/bin/" ]
-
-CMD [ "start.sh" ]
+ENTRYPOINT ["start-tor-browser"]
+CMD [""]
