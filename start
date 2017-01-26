@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Entrypoint script for tor-browser.
+#
+set -euo pipefail
+
+TORRC_PATH=${TORRC_PATH:-""}
+[[ "$TORRC_PATH" ]] && echo "$(date) [ $(basename $0) ] Using torrc file from '$TORRC_PATH'.."
+[[ -e "$TORRC_PATH" ]] {
+  echo "$(date) [ $(basename $0) ] FATAL: No such file '$TORRC_PATH'." >&1
+  exit 1
+}
+cp -v "$TORRC_PATH" /usr/local/bin/Browser/TorBrowser/Data/Tor/torrc
+start-tor-browser "$@"

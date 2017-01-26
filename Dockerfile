@@ -1,7 +1,5 @@
 FROM debian
 
-# TODO(hkjn): Use alpine as base.
-
 MAINTAINER Henrik Jonsson <me@hkjn.me>
 
 ENV TOR_VERSION=7.0a1-hardened
@@ -45,5 +43,6 @@ RUN curl --fail -O -sSL ${RELEASE_URL} && \
 WORKDIR /usr/local/bin/Browser/Downloads
 USER user
 
-ENTRYPOINT ["start-tor-browser"]
+COPY ["start", "/usr/local/bin/"]
+ENTRYPOINT ["start"]
 CMD [""]

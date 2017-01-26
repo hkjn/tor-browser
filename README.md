@@ -1,5 +1,22 @@
 # tor-browser
 
-[![](https://badge.imagelayers.io/hkjn/tor-browser:latest.svg)](https://imagelayers.io/?images=hkjn/tor-browser:latest 'Get your own badge on imagelayers.io')
-
 This repo defines the `hkjn/tor-browser` Docker image.
+
+You can run tor-browser in a container with a command like:
+
+```
+docker run -it --rm --name tor-browser \
+           -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+           -e DISPLAY=unix$DISPLAY \
+           hkjn/tor-browser
+```
+
+If you want to specify a custom `torrc` file, that can be done with:
+```
+docker run -it --rm --name tor-browser \
+           -v /host/dir/containing/torrc:/conf \
+           -e TORRC_PATH=/conf/torrc \
+           -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+           -e DISPLAY=unix$DISPLAY \
+           hkjn/tor-browser
+```
