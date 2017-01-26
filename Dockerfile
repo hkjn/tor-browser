@@ -4,13 +4,14 @@ FROM debian
 
 MAINTAINER Henrik Jonsson <me@hkjn.me>
 
-ENV TOR_VERSION 6.5a6-hardened
-# Taken from https://dist.torproject.org/torbrowser/$TOR_VERSION/sha256sums-unsigned-build.txt
-ENV SHA256_CHECKSUM 03e7107d803af2e8c964980f7cbdb4f18af33e1b07867d8d1084bcede5597189
-ENV LANG C.UTF-8
-ENV RELEASE_FILE tor-browser-linux64-${TOR_VERSION}_ALL.tar.xz
-ENV RELEASE_KEY 0x4E2C6E8793298290
-ENV RELEASE_URL https://dist.torproject.org/torbrowser/${TOR_VERSION}/${RELEASE_FILE}
+ENV TOR_VERSION=6.5a6-hardened \
+    # Taken from https://dist.torproject.org/torbrowser/$TOR_VERSION/sha256sums-unsigned-build.txt
+    SHA256_CHECKSUM=03e7107d803af2e8c964980f7cbdb4f18af33e1b07867d8d1084bcede5597189 \
+    LANG=C.UTF-8 \
+    RELEASE_FILE=tor-browser-linux64-${TOR_VERSION}_ALL.tar.xz \
+    RELEASE_KEY=0x4E2C6E8793298290 \
+    RELEASE_URL=https://dist.torproject.org/torbrowser/${TOR_VERSION}/${RELEASE_FILE} \
+    HOME=/home/user
 
 RUN apt-get update && \
     apt-get install -y \
@@ -24,7 +25,6 @@ RUN apt-get update && \
       xz-utils && \
     rm -rf /var/lib/apt/lists/*
 
-ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user && \
     chown -R user:user $HOME
 
