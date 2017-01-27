@@ -13,7 +13,7 @@ if [[ "$TORRC_PATH" ]]; then
     echo "$(date) [ $(basename $0) ] FATAL: No such file '$TORRC_PATH'." >&1
     exit 1
   fi
-  cp -v "$TORRC_PATH" /Browser/TorBrowser/Data/Tor/torrc
+  cp -v "$TORRC_PATH" /usr/local/bin/Browser/TorBrowser/Data/Tor/torrc
 fi
 
 start-tor-browser "$@"
