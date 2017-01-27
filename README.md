@@ -14,7 +14,7 @@ docker run -it --rm --name tor-browser \
 If you want to specify a custom `torrc` file, that can be done with:
 ```
 docker run -it --rm --name tor-browser \
-           -v /host/dir/containing/torrc:/conf \
+           -v /host/dir/containing/torrc:/conf:ro \
            -e TORRC_PATH=/conf/torrc \
            -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
            -e DISPLAY=unix$DISPLAY \
