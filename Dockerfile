@@ -25,6 +25,7 @@ RUN apt-get update && \
     useradd --create-home --home-dir /home/user user && \
     chown -R user:user /home/user
 
+WORKDIR /usr/local/bin
 # TODO(hkjn): Stop having gpg import key command separate layer, if we
 # can figure out why it's flaky and commonly gives "keys: key
 # 4E2C6E8793298290 can't be retrieved, gpg: no valid OpenPGP data
