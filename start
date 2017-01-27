@@ -16,4 +16,6 @@ if [[ "$TORRC_PATH" ]]; then
   cp -v "$TORRC_PATH" /usr/local/bin/Browser/TorBrowser/Data/Tor/torrc
 fi
 
+echo "$(date) [ $(basename $0) ] Starting tor-browser with extra args '$@'.."
 start-tor-browser "$@"
+echo "$(date) [ $(basename $0) ] The tor-browser process exited."
