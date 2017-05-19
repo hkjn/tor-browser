@@ -17,5 +17,5 @@ if [[ "$TORRC_PATH" ]]; then
 fi
 
 echo "$(date) [ $(basename $0) ] Starting tor-browser with extra args '$@'.."
-start-tor-browser "$@"
+start-tor-browser "$@" --debug
 echo "$(date) [ $(basename $0) ] The tor-browser process exited."

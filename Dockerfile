@@ -15,6 +15,8 @@ RUN apt-get update && \
     apt-get install -y \
       ca-certificates \
       curl \
+      file \
+      libx11-xcb1 \
       libasound2 \
       libdbus-glib-1-2 \
       libgtk2.0-0 \
@@ -39,7 +41,7 @@ RUN curl --fail -O -sSL ${RELEASE_URL} && \
     tar --strip-components=1 -vxJf ${RELEASE_FILE} && \
     rm -v ${RELEASE_FILE}* sha256sums.txt && \
     mkdir -p /usr/local/bin/Browser/Downloads && \
-    chown -R user:user /usr/local/bin/Browser/Downloads
+    chown -R user:user /usr/local/bin
 
 WORKDIR /usr/local/bin/Browser/Downloads
 USER user
