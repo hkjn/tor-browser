@@ -16,6 +16,7 @@ RUN apt-get update && \
       ca-certificates \
       curl \
       file \
+      gpg \
       libx11-xcb1 \
       libasound2 \
       libdbus-glib-1-2 \
