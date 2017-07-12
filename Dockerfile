@@ -2,9 +2,9 @@ FROM debian
 
 LABEL maintainer="Henrik Jonsson <me@hkjn.me>"
 
-ENV TOR_VERSION=7.5a1
+ENV TOR_VERSION=7.5a2
 # Via https://dist.torproject.org/torbrowser/$TOR_VERSION/sha256sums-unsigned-build.txt
-ENV SHA256_CHECKSUM=8d908b0476faf8b0a0b0a941007bb6ef9d861c66b2675c40b01cf322aefd686f
+ENV SHA256_CHECKSUM=fd64c7d25ca60c08f3a855c4e7163ac96f9839a6df66fdf2276a35e210f0c7c7
 ENV LANG=C.UTF-8
 ENV RELEASE_FILE=tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz
 ENV RELEASE_KEY=0x4E2C6E8793298290
