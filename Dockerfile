@@ -18,7 +18,7 @@ RUN apt-get update && \
       libx11-xcb1 \
       libasound2 \
       libdbus-glib-1-2 \
-      libgtk3.0-0 \
+      libgtk-3-0 \
       libxrender1 \
       libxt6 \
       xz-utils && \
