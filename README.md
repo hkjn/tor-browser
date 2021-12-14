@@ -1,3 +1,7 @@
+# deprecated
+
+See https://github.com/hkjn/src/tree/master/tor-browser instead.
+
 # tor-browser
 
 This repo defines the `hkjn/tor-browser` Docker image.
