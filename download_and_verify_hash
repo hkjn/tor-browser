@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Helper script to download, verify and print hash of Tor browser release.
+#
+set -euo pipefail
+
+TOR_VERSION=${1:-""}
+TMP_DIR=$(mktemp -d)
+
+if [[ ! "${TOR_VERSION}" ]]; then
+  echo "FATAL: no version specified" >&2
+  echo >&2
+  echo "usage: ${0} <version>" >&2
+  exit 1
+fi
+
+echo "Downloading files to ${TMP_DIR}.."
+cd "${TMP_DIR}"
+curl -LO https://dist.torproject.org/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz
+curl -LO https://dist.torproject.org/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc
+curl -LO https://dist.torproject.org/torbrowser/${TOR_VERSION}/sha256sums-signed-build.txt
+curl -LO https://dist.torproject.org/torbrowser/${TOR_VERSION}/sha256sums-signed-build.txt.asc
+gpg --verify tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc
+grep linux64-${TOR_VERSION}_en-US.tar.xz sha256sums-signed-build.txt
+sha256sum tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz

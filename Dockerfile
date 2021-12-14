@@ -1,11 +1,11 @@
 FROM debian
 
-ENV TOR_VERSION=9.0a1
+ENV TOR_VERSION=11.5a1
 # Via https://dist.torproject.org/torbrowser/$TOR_VERSION/sha256sums-signed-build.txt
-ENV SHA256_CHECKSUM=f7518f4445591d851ebd9d51f9d966b964398ef50e4b523f7f78ee5f3f066d76
+ENV SHA256_CHECKSUM=63e9f5df83edfa1b20707a63c848486d370121a670e566c2cecb5dc0d281f14b
 ENV LANG=C.UTF-8
 ENV RELEASE_FILE=tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz
-ENV RELEASE_KEY=0x4E2C6E8793298290
+ENV RELEASE_KEY=0xEF6E286DDA85EA2A4BA7DE684E2C6E8793298290
 ENV RELEASE_URL=https://dist.torproject.org/torbrowser/${TOR_VERSION}/${RELEASE_FILE}
 ENV PATH=$PATH:/usr/local/bin/Browser
 
@@ -27,12 +27,10 @@ RUN apt-get update && \
     chown -R user:user /home/user
 
 WORKDIR /usr/local/bin
-# TODO(hkjn): Stop having gpg import key command separate layer, if we
-# can figure out why it's flaky and commonly gives "keys: key
-# 4E2C6E8793298290 can't be retrieved, gpg: no valid OpenPGP data
-# found."
-RUN gpg --keyserver pool.sks-keyservers.net --recv-keys ${RELEASE_KEY}
+COPY ["0xEF6E286DDA85EA2A4BA7DE684E2C6E8793298290.asc", "/tmp/"]
+RUN gpg --import /tmp/0xEF6E286DDA85EA2A4BA7DE684E2C6E8793298290.asc
 
+RUN echo "Downloading ${RELEASE_URL}.."
 RUN curl --fail -O -sSL ${RELEASE_URL} && \
     curl --fail -O -sSL ${RELEASE_URL}.asc && \
     gpg --verify ${RELEASE_FILE}.asc && \
